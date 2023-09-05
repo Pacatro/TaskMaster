@@ -15,12 +15,12 @@ async def tasks(user_id: str, task_data: dict):
 
 
 #EDITAR TAREAS DEL USUARIO SELECCIONADO
-@router.put("/{user_id}")
-async def tasks(user_id: str, new_task_data: dict):
+@router.put("/{task_id}")
+async def tasks(task_id: int, new_task_data: dict):
     pass
 
 
-#INSERTAR NUEVAS TAREAS AL USUARIO SELECCIONADO
-@router.delete("/{user_id}")
-async def tasks(user_id: str, task_id: str):
+#ELIMINAR TAREA SELECCIONADA
+@router.delete("/{task_id}")
+async def tasks(task_id: int):
     pass
