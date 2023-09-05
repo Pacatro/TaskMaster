@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status, Depends
-from models.task import get_tasks
+from models.task import get_tasks, insert_task, update_task, delete_task
 
 router = APIRouter(prefix="/tasks", tags=["tasks"])
 
@@ -7,20 +7,24 @@ router = APIRouter(prefix="/tasks", tags=["tasks"])
 async def tasks(user_id: str):
     return get_tasks(user_id)
 
-
-#INSERTAR NUEVAS TAREAS DEL USUARIO SELECCIONADO
-@router.post("/{user_id}")
+#ARREGLAR RESPUESTAS
+@router.post("/{user_id}", status_code=status.HTTP_201_CREATED)
 async def tasks(user_id: str, task_data: dict):
-    pass
+    if not insert_task(user_id, task_data):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+    return {"message": "Task created"}
 
-
-#EDITAR TAREAS DEL USUARIO SELECCIONADO
+#ARREGLAR RESPUESTAS
 @router.put("/{task_id}")
 async def tasks(task_id: int, new_task_data: dict):
-    pass
+    if not update_task(task_id, new_task_data):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+    return {"message": "Task updated"}
 
 
-#ELIMINAR TAREA SELECCIONADA
+#ARREGLAR RESPUESTAS
 @router.delete("/{task_id}")
 async def tasks(task_id: int):
-    pass
+    if not delete_task(task_id):
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Task not found")
+    return {"message": "Task deleted"}
