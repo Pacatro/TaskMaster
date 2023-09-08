@@ -1,11 +1,14 @@
 import Header from './components/Header'
+import LoginForm from './components/LoginForm'
+
 import './App.css'
 
 function App() {
 
   return (
     <>
-    <Header></Header>
+    <Header />
+    <LoginForm />
     </>
   )
 }
