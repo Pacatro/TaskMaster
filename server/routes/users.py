@@ -1,6 +1,5 @@
 from fastapi import APIRouter, HTTPException, status, Depends
 from .auth import User, current_user
-from models.task import get_tasks
 
 router = APIRouter(prefix="/users", tags=["users"])
 

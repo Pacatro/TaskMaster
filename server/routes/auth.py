@@ -1,7 +1,8 @@
 import os
 from fastapi import APIRouter, HTTPException, status, Depends
 from fastapi.security import OAuth2PasswordBearer
-from models.user import search_user_db, search_user, insert_user_db, User
+from controllers.user_controler import UserController
+from models.user import User
 from models.token import Token
 from datetime import datetime, timedelta
 from passlib.context import CryptContext
@@ -32,7 +33,7 @@ async def auth_user(token: str = Depends(oauth2_scheme)):
     except JWTError:
         raise exception
     
-    return search_user(username)
+    return UserController.search_user(username)
 
 
 async def current_user(user: User = Depends(auth_user)):
@@ -55,7 +56,7 @@ def get_token(data: dict, expires_delta: timedelta | None):
 @router.post("/signup")
 async def signup(form_data: dict):
     
-    user = search_user(form_data["username"])
+    user = UserController.search_user(form_data["username"])
     
     if user:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User already exists")
@@ -63,7 +64,7 @@ async def signup(form_data: dict):
     form_data.update({"id": uuid.uuid4()})
     form_data.update({"password": crypt.hash(form_data["password"])})
     
-    user = insert_user_db(form_data)
+    user = UserController.insert_user_db(form_data)
     
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     
@@ -77,7 +78,7 @@ async def login(form_data: dict):
     username = form_data["username"]
     password = form_data["password"]
     
-    user = search_user_db(username)
+    user = UserController.search_user_db(username)
     
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
