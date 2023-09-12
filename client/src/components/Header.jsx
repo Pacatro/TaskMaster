@@ -1,4 +1,3 @@
-
 function Header({loginButton, signupButton}) {
   return (
     <header className="header">

@@ -13,9 +13,16 @@ function App() {
     setShowLogin(true)
     setShowHeader(false)
   }
+  
   const signupButton = () => {
     setShowSignup(true)
     setShowHeader(false)
+  }
+
+  const back = () => {
+    setShowHeader(true)
+    setShowLogin(false)
+    setShowSignup(false)
   }
 
   useEffect(() => {
@@ -25,8 +32,8 @@ function App() {
   return (
     <>
       {showHeader && <Header loginButton={loginButton} signupButton={signupButton} />}
-      {showLogin && <LoginForm />}
-      {showSignup && <SignupForm />}
+      {showLogin && <LoginForm back={back} />}
+      {showSignup && <SignupForm back={back} />}
     </>
   );
 }
