@@ -9,7 +9,7 @@ header {
 }
 
 .nav h1 {
-    margin-top: 400px;
+    margin-top: 550px;
     font-size: 100px;
 }
 
@@ -20,47 +20,55 @@ header {
     gap: 20px;
 }
 
-.nav button {
+.nav button, .submit-button {
     padding: 10px 30px;
     font-size: 23px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid aliceblue;
     background: none;
     cursor: pointer;
     color: aliceblue;
     font-family: 'Bree Serif', serif;
+    transition: .6s;
 }
 
-.nav button:hover, .login-form button:hover {
+.nav button:hover, .submit-button:hover {
     background-color: aliceblue;
     color: black;
     transition: .6s;
 }
 
-.login-form {
+.form-container {
+    max-width: 300px;
+    margin-top: 550px;
+    padding: 50px 100px;
+    border: 1px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-container h2 {
+    text-align: center;
+}
+
+form {
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    padding: 20px;
 }
-
-.login-form input {
-    margin: 10px;
+  
+input {
+    width: 100%;
     padding: 10px;
-    border-radius: 8px;
-    border: none;
-    background: none;
-    color: aliceblue;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 10px;
 }
 
-.login-form button {
-    padding: 10px 30px;
-    font-size: 23px;
-    border-radius: 8px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: aliceblue;
-    font-family: 'Bree Serif', serif;
-
+.submit-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 20px;
 }
+

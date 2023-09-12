@@ -1,13 +1,12 @@
-import React from "react";
 
-function Header() {
+function Header({loginButton, signupButton}) {
   return (
     <header className="header">
       <nav className="nav">
         <h1 className="logo">TaskMaster</h1>
         <div>
-          <button>Login</button>
-          <button>Signup</button>
+          <button onClick={loginButton}>Login</button>
+          <button onClick={signupButton}>Signup</button>
         </div>
       </nav>
     </header>
