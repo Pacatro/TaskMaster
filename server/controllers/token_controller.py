@@ -1,7 +1,8 @@
-from jose import jwt
 from datetime import datetime, timedelta
-import os
+from jose import jwt
+from models.token import Token
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
@@ -19,4 +20,6 @@ class TokenController:
             
         to_encode.update({"exp": expire})
         
-        return jwt.encode(to_encode, SECRET, algorithm=ALGORITHM)
+        access_token = jwt.encode(to_encode, SECRET, algorithm=ALGORITHM)
+        
+        return Token(access_token=access_token, token_type="bearer")

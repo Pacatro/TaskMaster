@@ -1,33 +1,27 @@
 import { useState } from "react";
+import API from "../api/api";
 
 function LoginForm({ back }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const sendLoginData = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const data = {
-      'username': username,
-      'password': password
-    }
+      username: username,
+      password: password,
+    };
 
-    const response = await fetch('http://127.0.0.1:8000/login', {
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-
-    const result = await response.json()
-    console.log(result)
-  }
+    const access_token = await API.postUserData("http://127.0.0.1:8000/login", data);
+    localStorage.setItem("access_token", access_token);
+    window.location.reload();
+  };
 
   return (
     <>
       <div className="form-container">
-        <form>
-        <h2>Welcome Back!</h2>
+        <form onSubmit={sendLoginData}>
+          <h2>Welcome Back!</h2>
           <input
             type="text"
             id="username"
@@ -45,11 +39,13 @@ function LoginForm({ back }) {
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="submit-button" onClick={sendLoginData}>
+          <button className="submit-button" type="submit">
             Login
           </button>
         </form>
-        <button className="back-button" onClick={back}>Back</button>
+        <button className="back-button" onClick={back}>
+          Back
+        </button>
       </div>
     </>
   );

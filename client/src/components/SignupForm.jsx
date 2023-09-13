@@ -1,4 +1,5 @@
 import { useState } from "react";
+import API from "../api/api";
 
 function SignupForm({ back }) {
   const [username, setUsername] = useState("");
@@ -6,6 +7,21 @@ function SignupForm({ back }) {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const sendSignupData = async (e) => {
+    e.preventDefault();
+    const data = {
+      username: username,
+      name: name,
+      surname: surname,
+      email: email,
+      password: password,
+    };
+
+    const access_token = await API.postUserData("http://127.0.0.1:8000/signup", data);
+    localStorage.setItem("access_token", access_token);
+    window.location.reload();
+  };
 
   return (
     <div className="form-container">
@@ -52,7 +68,7 @@ function SignupForm({ back }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="submit-button" type="submit">
+        <button className="submit-button" type="submit" onClick={sendSignupData}>
           Signup
         </button>
       </form>

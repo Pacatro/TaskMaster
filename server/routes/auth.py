@@ -2,7 +2,6 @@ from fastapi import APIRouter, HTTPException, status
 from controllers.token_controller import TokenController
 from controllers.user_controler import UserController
 from passlib.context import CryptContext
-from models.token import Token
 import uuid
 
 router = APIRouter()
@@ -22,9 +21,7 @@ async def signup(form_data: dict):
     
     user = UserController.insert_user_db(form_data)
     
-    access_token = TokenController.get_token(data={"sub": user.username})
-    
-    return Token(access_token=access_token, token_type="bearer")
+    return TokenController.get_token(data={"sub": user.username})
 
 
 @router.post("/login")
@@ -40,7 +37,5 @@ async def login(form_data: dict):
     if not crypt.verify(password, user.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect password")
         
-    access_token = TokenController.get_token(data={"sub": user.username})
-    
-    return Token(access_token=access_token, token_type="bearer")
+    return TokenController.get_token(data={"sub": user.username})
     
