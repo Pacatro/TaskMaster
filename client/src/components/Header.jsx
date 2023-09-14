@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import validToken from '../token/token'
 
 function Header() {
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    token ? navigate("/home") : navigate("/");
+    validToken(token) ? navigate("/home") : navigate("/");
   }, []);
 
   return (
