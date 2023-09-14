@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 
 function Home() {
   const [userData, setUserData] = useState(null);
+  const navigate = useNavigate()
 
   const getUser = async () => {
-    const data = await API.getUserData("http://127.0.0.1:8000/users/me");
-
+    const data = await API.getUserData();
     setUserData(data);
   };
 
   useEffect(() => {
-    getUser();
+    const token = localStorage.getItem("access_token")
+    token ? getUser() : navigate('/');
   }, []);
 
   return <h1>Welcome {userData?.name}</h1>;

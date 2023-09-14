@@ -32,12 +32,15 @@ class UserController:
         
         result = cursor.fetchone()
         
+        if not result:
+            return None
+        
         user = UserDB(id=result[0], 
-                    username=result[1], 
-                    name=result[2], 
-                    surname=result[3], 
-                    email=result[4],
-                    password=result[5])
+                      username=result[1], 
+                      name=result[2], 
+                      surname=result[3], 
+                      email=result[4],
+                      password=result[5])
         
         return user
 

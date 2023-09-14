@@ -18,8 +18,8 @@ class API {
     return result.access_token;
   }
 
-  static async getUserData(path) {
-    const response = await fetch(path, {
+  static async getUserData() {
+    const response = await fetch("http://127.0.0.1:8000/users/me", {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("access_token")}`,
       },
