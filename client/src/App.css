@@ -20,7 +20,7 @@ header {
     gap: 20px;
 }
 
-button {
+button, .link, .back-button {
     padding: 10px 30px;
     font-size: 23px;
     border-radius: 8px;
@@ -30,9 +30,10 @@ button {
     color: aliceblue;
     font-family: 'Bree Serif', serif;
     transition: .6s;
+    text-decoration: none;
 }
 
-button:hover {
+button:hover, .link:hover, .back-button:hover {
     background-color: aliceblue;
     color: black;
     transition: .6s;

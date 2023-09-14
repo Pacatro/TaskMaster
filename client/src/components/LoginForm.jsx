@@ -1,9 +1,11 @@
 import { useState } from "react";
 import API from "../api/api";
+import { Link, useNavigate } from "react-router-dom";
 
-function LoginForm({ back }) {
+function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const sendLoginData = async (e) => {
     e.preventDefault();
@@ -12,9 +14,12 @@ function LoginForm({ back }) {
       password: password,
     };
 
-    const access_token = await API.postUserData("http://127.0.0.1:8000/login", data);
+    const access_token = await API.postUserData(
+      "http://127.0.0.1:8000/login",
+      data
+    );
     localStorage.setItem("access_token", access_token);
-    window.location.reload();
+    navigate("/home");
   };
 
   return (
@@ -43,9 +48,9 @@ function LoginForm({ back }) {
             Login
           </button>
         </form>
-        <button className="back-button" onClick={back}>
+        <Link to="/" className="back-button">
           Back
-        </button>
+        </Link>
       </div>
     </>
   );

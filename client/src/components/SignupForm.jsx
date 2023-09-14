@@ -1,5 +1,6 @@
 import { useState } from "react";
 import API from "../api/api";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignupForm({ back }) {
   const [username, setUsername] = useState("");
@@ -7,6 +8,7 @@ function SignupForm({ back }) {
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const sendSignupData = async (e) => {
     e.preventDefault();
@@ -18,9 +20,12 @@ function SignupForm({ back }) {
       password: password,
     };
 
-    const access_token = await API.postUserData("http://127.0.0.1:8000/signup", data);
+    const access_token = await API.postUserData(
+      "http://127.0.0.1:8000/signup",
+      data
+    );
     localStorage.setItem("access_token", access_token);
-    window.location.reload();
+    navigate("/home");
   };
 
   return (
@@ -68,13 +73,17 @@ function SignupForm({ back }) {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button className="submit-button" type="submit" onClick={sendSignupData}>
+        <button
+          className="submit-button"
+          type="submit"
+          onClick={sendSignupData}
+        >
           Signup
         </button>
       </form>
-      <button className="back-button" onClick={back}>
+      <Link className="back-button" to="/">
         Back
-      </button>
+      </Link>
     </div>
   );
 }
