@@ -1,103 +1,174 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    width: 100%;
-    font-family: 'Bree Serif', serif;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Bree Serif", serif;
 }
 
 header {
-    text-align: center;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.nav h1 {
-    margin-top: 550px;
-    font-size: 100px;
+.logo {
+  font-size: 100px;
 }
 
-.nav div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.nav-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
-button, .link, .back-button {
-    padding: 10px 30px;
-    font-size: 23px;
-    border-radius: 8px;
-    border: 1px solid aliceblue;
-    background: none;
-    cursor: pointer;
-    color: aliceblue;
-    font-family: 'Bree Serif', serif;
-    transition: .6s;
-    text-decoration: none;
+.links {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
 }
 
-button:hover, .link:hover, .back-button:hover {
-    background-color: aliceblue;
-    color: black;
-    transition: .6s;
+button,
+.link,
+.back-button {
+  padding: 10px 30px;
+  font-size: 23px;
+  border-radius: 8px;
+  border: 1px solid aliceblue;
+  background: none;
+  cursor: pointer;
+  color: aliceblue;
+  font-family: "Bree Serif", serif;
+  transition: 0.6s;
+  text-decoration: none;
+}
+
+button:hover,
+.link:hover,
+.back-button:hover {
+  background-color: aliceblue;
+  color: black;
+  transition: 0.6s;
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
-    max-width: 300px;
-    margin-top: 600px;
-    padding: 50px 100px;
-    border: 1px solid #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  max-width: 300px;
+  padding: 50px 100px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-  
+
 input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    margin: 10px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin: 10px;
 }
 
 .submit-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 20px;
 }
 
 .back-button {
-    margin-top: 20px;
+  margin-top: 20px;
+}
+
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.header-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  height: auto;
+  margin-top: 50px;
 }
 
 .tasks {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-
+  margin-top: 200px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .task {
-    height: 200px;
-    width: 350px;
-    background-color: rgb(34, 51, 68);
-    border: rgb(255, 255, 255) solid 1px;
-    border-radius: 15px;
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  height: 85px;
+  width: 350px;
+  background-color: rgb(34, 51, 68);
+  border: rgb(255, 255, 255) solid 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px;
+}
+
+.task h3 {
+  margin-left: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-right: 20px;
+}
+
+.buttons button {
+  padding: 5px 10px;
+  border: none;
+}
+
+.edit-button:hover {
+  background-color: rgb(255, 157, 0);
+  color: white;
+  transition: 0.6s;
+}
+
+.check-button:hover {
+  background-color: rgb(0, 200, 90);
+  color: white;
+  transition: 0.6s;
 }

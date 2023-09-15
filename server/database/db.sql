@@ -1,3 +1,6 @@
+-- Active: 1694521027087@@127.0.0.1@3306@taskdb
+DROP DATABASE IF EXISTS taskdb;
+
 CREATE DATABASE IF NOT EXISTS taskdb;
 
 USE taskdb;
@@ -28,3 +31,4 @@ INSERT INTO tasks (title, description, user_id) VALUES
 ('Tarea 2', 'Descripción de la Tarea 2', 'a1f5e8c3-8b21-4d3e-910b-4a9c1f93d2f1');
 
 SELECT * FROM users;
+SELECT * FROM tasks;

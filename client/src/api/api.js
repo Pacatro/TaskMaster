@@ -34,6 +34,62 @@ class API {
 
     return result;
   }
+
+  static async getTasks(idUser) {
+    const response = await fetch(`http://localhost:8000/tasks/${idUser}`);
+
+    if (!response.ok) {
+      alert("Wrong credentials!");
+      return;
+    }
+
+    const tasks = await response.json();
+    console.log(tasks)
+    return tasks;
+  }
+
+  static async postTask(idUser) {
+    const response = await fetch(`http://localhost:8000/tasks/${idUser}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(task),
+    });
+
+    if (!response.ok) {
+      alert("Wrong credentials!");
+      return;
+    }
+  }
+
+  static async updateTask(task_id, newTaskData) {
+    const response = await fetch(`http://localhost:8000/tasks/${task_id}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(newTaskData),
+    })
+
+    if (!response.ok) {
+      alert("Wrong credentials!");
+      return;
+    }
+  }
+
+  static async removeTask(task_id) {
+    const response = await fetch(`http://localhost:8000/tasks/${task_id}`, {
+      method: "DELETE",
+    });
+
+    console.log(response)
+
+    if (!response.ok) {
+      alert("Wrong credentials!");
+      return;
+    }
+  }
 }
 
 export default API;
