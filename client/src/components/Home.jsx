@@ -44,6 +44,11 @@ function Home() {
           <Task key={task.id} title={task.title} id={task.id} />
         ))}
       </section>
+
+      <footer className="home-footer">
+      <button>Add</button>
+        <button onClick={logout}>Logout</button>
+      </footer>
     </div>
   );
 }
