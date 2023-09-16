@@ -17,7 +17,7 @@ function TaskForm({ userId }) {
     <form className="task-form" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="title"
+        placeholder="Title"
         name="title"
         required
         value={task.title}

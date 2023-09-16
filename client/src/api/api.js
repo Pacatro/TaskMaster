@@ -82,7 +82,6 @@ class API {
       method: "DELETE",
     });
 
-
     if (!response.ok) {
       alert("Wrong credentials!");
       return;

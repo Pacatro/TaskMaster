@@ -4,6 +4,7 @@ import API from "../api/api";
 import validToken from "../token/token";
 import Task from "../components/Task";
 import TaskForm from "./TaskForm";
+import TaskDialog from "./TaskDialog";
 
 function Home() {
   const [userData, setUserData] = useState({});
@@ -38,7 +39,7 @@ function Home() {
     <main className="home-container">
       <header className="header-home">
         <h1>{userData?.name}'s tasks</h1>
-        <TaskForm userId={userData.id}/>
+        <TaskForm userId={userData.id} />
       </header>
       <section className="tasks">
         {userTasks.map((task) => (

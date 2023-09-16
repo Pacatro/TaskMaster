@@ -163,6 +163,12 @@ input {
   align-items: center;
   justify-content: space-between;
   margin: 30px;
+  cursor: pointer;
+}
+
+.task:hover {
+  background-color: rgb(61, 89, 117);
+  transition: .6s;
 }
 
 .task h3 {
