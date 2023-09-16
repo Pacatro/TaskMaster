@@ -42,8 +42,7 @@ header {
 button,
 .link,
 .back-button {
-  height: 50px;
-  width: 100px;
+  padding: 10px 20px;
   font-size: 23px;
   border-radius: 8px;
   border: 1px solid aliceblue;
@@ -115,6 +114,7 @@ input {
 
 .header-home {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   top: 0;
@@ -122,8 +122,29 @@ input {
   margin-top: 50px;
 }
 
+.task-form {
+  width: 200px;
+  height: 210px;
+  padding: 10px 50px;
+  background-color: rgb(34, 51, 68);
+
+}
+
+.task-form button {
+  margin-top: 20px;
+}
+
+.task-form button:hover {
+  background-color: #0ea65f;
+  color: #ffffff;
+}
+
+.task-form textarea {
+  resize: none;
+}
+
 .tasks {
-  margin-top: 200px;
+  margin-top: 400px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

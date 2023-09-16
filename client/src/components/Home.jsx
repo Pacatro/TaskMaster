@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 import validToken from "../token/token";
 import Task from "../components/Task";
+import TaskForm from "./TaskForm";
 
 function Home() {
   const [userData, setUserData] = useState({});
@@ -34,22 +35,20 @@ function Home() {
   }, [userData]);
 
   return (
-    <div className="home-container">
+    <main className="home-container">
       <header className="header-home">
         <h1>{userData?.name}'s tasks</h1>
+        <TaskForm userId={userData.id}/>
       </header>
-
       <section className="tasks">
         {userTasks.map((task) => (
           <Task key={task.id} title={task.title} id={task.id} />
         ))}
       </section>
-
       <footer className="home-footer">
-      <button>Add</button>
         <button onClick={logout}>Logout</button>
       </footer>
-    </div>
+    </main>
   );
 }
 

@@ -44,11 +44,10 @@ class API {
     }
 
     const tasks = await response.json();
-    console.log(tasks)
     return tasks;
   }
 
-  static async postTask(idUser) {
+  static async postTask(idUser, task) {
     const response = await fetch(`http://localhost:8000/tasks/${idUser}`, {
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +82,6 @@ class API {
       method: "DELETE",
     });
 
-    console.log(response)
 
     if (!response.ok) {
       alert("Wrong credentials!");
