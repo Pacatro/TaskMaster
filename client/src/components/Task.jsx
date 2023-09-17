@@ -1,12 +1,15 @@
-import React from "react";
+import { useState } from "react";
 import API from "../api/api";
+import TaskDialog from "./TaskDialog";
 
 function Task({ title, id }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="task">
       <h3>{title}</h3>
       <div className="buttons">
-        <button className="edit-button">
+        <button className="edit-button" onClick={() => setIsOpen(true)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -47,6 +50,9 @@ function Task({ title, id }) {
           </svg>
         </button>
       </div>
+
+          <TaskDialog isOpen={isOpen} setIsOpen={setIsOpen} task_id={id} />
+
     </div>
   );
 }

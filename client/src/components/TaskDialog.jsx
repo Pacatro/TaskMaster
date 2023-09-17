@@ -1,28 +1,58 @@
-import { useState } from "react";
-import { Dialog } from "@headlessui/react";
+import { useState, Fragment } from "react";
+import { Transition, Dialog } from "@headlessui/react";
+import API from "../api/api";
 
-function TaskDialog({ open }) {
-  let [isOpen, setIsOpen] = useState(true);
+function TaskDialog({ isOpen, setIsOpen, task_id }) {
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+  });
 
-  setIsOpen(open);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    API.updateTask(task_id, newTask);
+    window.location.reload();
+  };
 
   return (
-    <Dialog open={isOpen} onClose={() => setIsOpen(false)}>
-      <Dialog.Panel>
-        <Dialog.Title>Deactivate account</Dialog.Title>
-        <Dialog.Description>
-          This will permanently deactivate your account
-        </Dialog.Description>
-
-        <p>
-          Are you sure you want to deactivate your account? All of your data
-          will be permanently removed. This action cannot be undone.
-        </p>
-
-        <button onClick={() => setIsOpen(false)}>Deactivate</button>
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
-      </Dialog.Panel>
-    </Dialog>
+    <Transition appear show={isOpen} as={Fragment}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        onClose={() => setIsOpen(false)}
+      >
+        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+          <Dialog.Title
+            as="h3"
+            className="text-lg font-medium leading-6 text-gray-900"
+          >
+            Edit Task
+          </Dialog.Title>
+          <form className="task-form" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Title"
+              name="title"
+              required
+              value={newTask.title}
+              onChange={(e) => setNewTask({ ...newTask, title: e.target.value })}
+            />
+            <textarea
+              name="description"
+              placeholder="Description"
+              required
+              cols="25"
+              rows="25"
+              value={newTask.description}
+              onChange={(e) =>
+                setNewTask({ ...newTask, description: e.target.value })
+              }
+            ></textarea>
+            <button>Add</button>
+          </form>
+        </Dialog.Panel>
+      </Dialog>
+    </Transition>
   );
 }
 
