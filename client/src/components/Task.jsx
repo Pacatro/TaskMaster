@@ -1,6 +1,6 @@
 import { useState } from "react";
 import API from "../api/api";
-import TaskDialog from "./TaskDialog";
+import TaskEditDialog from "./TaskEditDialog";
 
 function Task({ title, id }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,7 +51,7 @@ function Task({ title, id }) {
         </button>
       </div>
 
-          <TaskDialog isOpen={isOpen} setIsOpen={setIsOpen} task_id={id} />
+          <TaskEditDialog isOpen={isOpen} setIsOpen={setIsOpen} task_id={id} />
 
     </div>
   );
