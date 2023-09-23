@@ -1,5 +1,5 @@
 import { useState, Fragment } from "react";
-import { Dialog, DialogTitle, DialogContent } from "@mui/material";
+import { Dialog } from "@mui/material";
 import API from "../api/api";
 
 function TaskEditDialog({ isOpen, setIsOpen, task_id }) {

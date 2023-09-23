@@ -87,6 +87,18 @@ class API {
       return;
     }
   }
+
+  static async getTask(task_id) {
+    const response = await fetch(`http://localhost:8000/tasks/task/${task_id}`)
+
+    if (!response.ok) {
+      alert("Wrong credentials!");
+      return;
+    }
+
+    const task = await response.json();
+    return task;
+  }
 }
 
 export default API;
