@@ -1,25 +1,15 @@
-from datetime import datetime, timedelta
-from jose import jwt
+import jwt
+from datetime import datetime, timedelta, timezone
+
 from models.token import Token
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-SECRET = os.getenv("SECRET")
-ALGORITHM = os.getenv("ALGORITHM")
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
+from core import settings
 
 class TokenController:
     @staticmethod
     def get_token(data: dict):
         to_encode = data.copy()
-        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        
-        expire = datetime.utcnow() + access_token_expires
-            
+        access_token_expires = timedelta(minutes=settings.jwt_expires_min)
+        expire = datetime.now(timezone.utc) + access_token_expires
         to_encode.update({"exp": expire})
-        
-        access_token = jwt.encode(to_encode, SECRET, algorithm=ALGORITHM)
-        
-        return Token(access_token=access_token, token_type="bearer")
+        access_token = jwt.encode(to_encode, settings.secret, algorithm=settings.algorithm)
+        return Token(access_token=access_token, token_type="Bearer")

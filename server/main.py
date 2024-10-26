@@ -1,15 +1,15 @@
-import uvicorn
 from fastapi import FastAPI
-from routes import auth, users, tasks
 from fastapi.middleware.cors import CORSMiddleware
+
+from routes import auth, users, tasks
+from core import settings
 
 app = FastAPI()
 
-origins = ["*"]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    # allow_origins=[settings.frontend_url],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -18,6 +18,3 @@ app.add_middleware(
 app.include_router(auth.router)
 app.include_router(users.router)
 app.include_router(tasks.router)
-
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="localhost", port=8000, reload=True)

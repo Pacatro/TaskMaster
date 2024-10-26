@@ -1,11 +1,12 @@
 # TaskMaster
-Classic TODO app.
 
+Classic TODO app.
 
 ## 📑 Stack
 
-- [react](https://react.dev/) - For Frontend.
-- [fastapi](https://fastapi.tiangolo.com/) - For Backend.
+- [React](https://react.dev/) - For Frontend.
+- [FastAPI](https://fastapi.tiangolo.com/) - For Backend.
+- [MySQL](https://www.mysql.com/) - For Database.
 
 ## 🔑 License
 
